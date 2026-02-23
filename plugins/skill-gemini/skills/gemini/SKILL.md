@@ -6,7 +6,7 @@ description: Use when the user asks to run Gemini CLI (gemini -p, gemini --resum
 # Gemini Skill Guide
 
 ## Running a Task
-1. Ask the user (via `AskUserQuestion`) which model to run (`gemini-2.5-pro` or `gemini-2.5-flash`) in a **single prompt**.
+1. Ask the user (via `AskUserQuestion`) which model to run (`gemini-3-pro-preview` or `gemini-3-flash-preview`) in a **single prompt**.
 2. Select the approval mode required for the task; default to `--sandbox` (sandboxed) unless edits or broad access are necessary.
 3. Assemble the command with the appropriate options:
    - `-m, --model <MODEL>`

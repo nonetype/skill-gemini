@@ -51,11 +51,11 @@ Use gemini to analyze this repository and suggest improvements for my claude cod
 
 **Claude Code response:**
 Claude will activate the Gemini skill and:
-1. Ask which model to use (`gemini-2.5-pro` or `gemini-2.5-flash`) unless already specified in your prompt.
+1. Ask which model to use (`gemini-3-pro-preview` or `gemini-3-flash-preview`) unless already specified in your prompt.
 2. Select appropriate approval mode (defaults to `--sandbox` for analysis)
 3. Run a command like:
 ```bash
-gemini -m gemini-2.5-pro \
+gemini -m gemini-3-pro-preview \
   -s \
   -p "Analyze this Claude Code skill repository comprehensively..."
 ```
