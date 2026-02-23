@@ -1,17 +1,17 @@
 Leave a star ⭐ if you like it 😘
 
-# Codex Integration for Claude Code
+# Gemini Integration for Claude Code
 
-<img width="2288" height="808" alt="skillcodex" src="https://github.com/user-attachments/assets/85336a9f-4680-479e-b3fe-d6a68cadc051" />
+<img width="2288" height="808" alt="skillgemini" src="https://github.com/user-attachments/assets/85336a9f-4680-479e-b3fe-d6a68cadc051" />
 
 
 ## Purpose
-Enable Claude Code to invoke the Codex CLI (`codex exec` and session resumes) for automated code analysis, refactoring, and editing workflows.
+Enable Claude Code to invoke the Gemini CLI (`gemini -p` and session resumes) for automated code analysis, refactoring, and editing workflows.
 
 ## Prerequisites
-- `codex` CLI installed and available on `PATH`.
-- Codex configured with valid credentials and settings.
-- Confirm the installation by running `codex --version`; resolve any errors before using the skill.
+- `gemini` CLI installed and available on `PATH`.
+- Gemini configured with valid credentials and settings.
+- Confirm the installation by running `gemini --version`; resolve any errors before using the skill.
 
 ## Installation
 
@@ -22,8 +22,8 @@ This repository is structured as a [Claude Code Plugin](https://code.claude.com/
 Install via Claude Code's plugin system for automatic updates:
 
 ```
-/plugin marketplace add skills-directory/skill-codex
-/plugin install skill-codex@skill-codex
+/plugin marketplace add nonetype/skill-gemini
+/plugin install skill-gemini@skill-gemini
 ```
 
 ### Option 2: Standalone Skill Installation
@@ -31,44 +31,40 @@ Install via Claude Code's plugin system for automatic updates:
 Extract the skill folder manually:
 
 ```
-git clone --depth 1 git@github.com:skills-directory/skill-codex.git /tmp/skills-temp && \
+git clone --depth 1 git@github.com:nonetype/skill-gemini.git /tmp/skills-temp && \
 mkdir -p ~/.claude/skills && \
-cp -r /tmp/skills-temp/plugins/skill-codex/skills/codex ~/.claude/skills/codex && \
+cp -r /tmp/skills-temp/plugins/skill-gemini/skills/gemini ~/.claude/skills/gemini && \
 rm -rf /tmp/skills-temp
 ```
 
 ## Usage
 
-### Important: Thinking Tokens
-By default, this skill suppresses thinking tokens (stderr output) using `2>/dev/null` to avoid bloating Claude Code's context window. If you want to see the thinking tokens for debugging or insight into Codex's reasoning process, explicitly ask Claude to show them.
+### Output Formats
+By default, Gemini outputs plain text. If you need structured output for programmatic processing, you can ask Claude to use `--output-format json` or `--output-format stream-json`. Use the `--debug` flag if you need verbose diagnostic output.
 
 ### Example Workflow
 
 **User prompt:**
 ```
-Use codex to analyze this repository and suggest improvements for my claude code skill.
+Use gemini to analyze this repository and suggest improvements for my claude code skill.
 ```
 
 **Claude Code response:**
-Claude will activate the Codex skill and:
-1. Ask which model to use (`gpt-5.3-codex` or `gpt-5.2`) unless already specified in your prompt.
-2. Ask which reasoning effort level (`low`, `medium`, or `high`) unless already specified in your prompt.
-3. Select appropriate sandbox mode (defaults to `read-only` for analysis)
-4. Run a command like:
+Claude will activate the Gemini skill and:
+1. Ask which model to use (`gemini-2.5-pro` or `gemini-2.5-flash`) unless already specified in your prompt.
+2. Select appropriate approval mode (defaults to `--sandbox` for analysis)
+3. Run a command like:
 ```bash
-codex exec -m gpt-5.3-codex \
-  --config model_reasoning_effort="high" \
-  --sandbox read-only \
-  --full-auto \
-  --skip-git-repo-check \
-  "Analyze this Claude Code skill repository comprehensively..." 2>/dev/null
+gemini -m gemini-2.5-pro \
+  -s \
+  -p "Analyze this Claude Code skill repository comprehensively..."
 ```
 
 **Result:**
-Claude will summarize the Codex analysis output, highlighting key suggestions and asking if you'd like to continue with follow-up actions.
+Claude will summarize the Gemini analysis output, highlighting key suggestions and asking if you'd like to continue with follow-up actions.
 
 ### Detailed Instructions
-See [`plugins/skill-codex/skills/codex/SKILL.md`](plugins/skill-codex/skills/codex/SKILL.md) for complete operational instructions, CLI options, and workflow guidance.
+See [`plugins/skill-gemini/skills/gemini/SKILL.md`](plugins/skill-gemini/skills/gemini/SKILL.md) for complete operational instructions, CLI options, and workflow guidance.
 
 ## License
 
